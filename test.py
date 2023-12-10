@@ -12,7 +12,7 @@ df = pd.read_csv("twitter_training.csv", header=None, names=column_names)
 selected_page = st.sidebar.radio("Navigation", ["EDA", "Preproccecing", "Model", "Testing"])
 
 # Main content based on selected page
-if selected_page == "Home":
+if selected_page == "EDA":
     # Display your main content here
     st.write("Kelompok 1")
 
