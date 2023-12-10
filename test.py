@@ -15,12 +15,12 @@ selected_page = st.sidebar.radio("Navigation", ["Home", "Dataframe", "Sentiment 
 if selected_page == "Home":
     # Display your main content here
     st.write("Kelompok 1")
-elif selected_page == "Dataframe":
-    # Display dataframe
+
+        # Display dataframe
     st.title('Dataframe')
     st.dataframe(df)
-elif selected_page == "Sentiment Distribution":
-    # Sentiment Distribution Bar Chart
+
+        # Sentiment Distribution Bar Chart
     sentiment_counts = df['Response'].value_counts()
     fig, ax = plt.subplots()
     ax.bar(sentiment_counts.index, sentiment_counts.values)
@@ -29,7 +29,7 @@ elif selected_page == "Sentiment Distribution":
     ax.set_title('Sentiment Distribution')
     plt.show()
     st.pyplot(fig)
-elif selected_page == "Word Clouds":
+
     # Drop Null Values
     df = df.dropna(axis=0)
 
@@ -55,3 +55,11 @@ elif selected_page == "Word Clouds":
     st.image(wordcloud_Neutral.to_image(), use_column_width=True)
     st.title('Word Cloud - Sentimen Irrelevant')
     st.image(wordcloud_Irrelevant.to_image(), use_column_width=True)
+
+elif selected_page == "Dataframe":
+    st.title('Dataframe')
+elif selected_page == "Sentiment Distribution":
+    st.title('Sentiment Distribution')
+
+elif selected_page == "Word Clouds":
+    st.title('Word Clouds')
