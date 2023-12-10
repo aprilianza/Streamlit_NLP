@@ -9,7 +9,7 @@ column_names = ['id', 'Konteks', 'Response', 'Komentar']
 df = pd.read_csv("twitter_training.csv", header=None, names=column_names)
 
 # Sidebar (Navbar)
-selected_page = st.sidebar.radio("Navigation", ["Home", "Dataframe", "Sentiment Distribution", "Word Clouds", "Prediksi Sentimen"])
+selected_page = st.sidebar.radio("Navigation", ["Home", "Dataframe", "Sentiment Distribution", "Word Clouds"])
 
 # Main content based on selected page
 if selected_page == "Home":
