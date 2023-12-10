@@ -9,7 +9,7 @@ column_names = ['id', 'Konteks', 'Response', 'Komentar']
 df = pd.read_csv("twitter_training.csv", header=None, names=column_names)
 
 # Sidebar (Navbar)
-selected_page = st.sidebar.radio("Navigation", ["Home", "Dataframe", "Sentiment Distribution", "Word Clouds"])
+selected_page = st.sidebar.radio("Navigation", ["EDA", "Preproccecing", "Model", "Testing"])
 
 # Main content based on selected page
 if selected_page == "Home":
@@ -56,10 +56,10 @@ if selected_page == "Home":
     st.title('Word Cloud - Sentimen Irrelevant')
     st.image(wordcloud_Irrelevant.to_image(), use_column_width=True)
 
-elif selected_page == "Dataframe":
-    st.title('Dataframe')
-elif selected_page == "Sentiment Distribution":
-    st.title('Sentiment Distribution')
+elif selected_page == "Preproccecing":
+    st.title('Preproccecing')
+elif selected_page == "Model":
+    st.title('Model')
 
-elif selected_page == "Word Clouds":
-    st.title('Word Clouds')
+elif selected_page == "Testing":
+    st.title('Testing   ')
