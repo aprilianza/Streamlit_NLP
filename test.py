@@ -14,7 +14,7 @@ selected_page = st.sidebar.radio("Navigation", ["EDA", "Preproccecing", "Model",
 # Main content based on selected page
 if selected_page == "EDA":
     # Display your main content here
-    st.write("Kelompok 1")
+    st.title("Kelompok 1")
 
         # Display dataframe
     st.title('Dataframe')
