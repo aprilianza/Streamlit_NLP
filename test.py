@@ -1,15 +1,25 @@
-import matplotlib.pyplot as plt
-import pandas as pd
 import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
-st.title("Distribusi Sentimen!")
+
+# Load data
 column_names = ['id', 'Konteks', 'Response', 'Komentar']
+df = pd.read_csv("twitter_training.csv", header=None, names=column_names)
 
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file, header=None, names=column_names)
+# Sidebar (Navbar)
+selected_page = st.sidebar.radio("Navigation", ["Home", "Dataframe", "Sentiment Distribution", "Word Clouds", "Prediksi Sentimen"])
 
+# Main content based on selected page
+if selected_page == "Home":
+    # Display your main content here
+    st.write("Kelompok 1")
+elif selected_page == "Dataframe":
+    # Display dataframe
+    st.title('Dataframe')
+    st.dataframe(df)
+elif selected_page == "Sentiment Distribution":
     # Sentiment Distribution Bar Chart
     sentiment_counts = df['Response'].value_counts()
     fig, ax = plt.subplots()
@@ -17,36 +27,26 @@ if uploaded_file is not None:
     ax.set_xlabel('Sentiment')
     ax.set_ylabel('Count')
     ax.set_title('Sentiment Distribution')
-
-    # Display dataframe
-    st.title('Dataframe')
-    st.dataframe(df)
-
-    # Display barchart
-    st.title('Distribusi Sentimen')
+    plt.show()
     st.pyplot(fig)
-    
-    # Drop Sentimen
-    st.title('Drop Semua Data Null')
-
-    # Word Cloud for Positive Sentiments
+elif selected_page == "Word Clouds":
+    # Drop Null Values
     df = df.dropna(axis=0)
+
+    # Word Clouds
     positive_texts = ' '.join(df[df['Response'] == 'Positive']['Komentar'])
     wordcloud_Positive = WordCloud(width=800, height=400, random_state=21, max_font_size=110).generate(positive_texts)
 
-    # Word Cloud for Negative Sentiments
     negative_texts = ' '.join(df[df['Response'] == 'Negative']['Komentar'])
     wordcloud_Negative = WordCloud(width=800, height=400, random_state=21, max_font_size=110).generate(negative_texts)
 
-    # Word Cloud for Neutral Sentiments
     neutral_texts = ' '.join(df[df['Response'] == 'Neutral']['Komentar'])
     wordcloud_Neutral = WordCloud(width=800, height=400, random_state=21, max_font_size=110).generate(neutral_texts)
 
-    # Word Cloud for Irrelevant Sentiments
     irrelevant_texts = ' '.join(df[df['Response'] == 'Irrelevant']['Komentar'])
     wordcloud_Irrelevant = WordCloud(width=800, height=400, random_state=21, max_font_size=110).generate(irrelevant_texts)
-    
-    # Display the Word Cloud using Streamlit
+
+    # Display the Word Clouds
     st.title('Word Cloud - Sentimen Positif')
     st.image(wordcloud_Positive.to_image(), use_column_width=True)
     st.title('Word Cloud - Sentimen Negative')
